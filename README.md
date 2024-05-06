@@ -1,2 +1,2 @@
-# button-clicker-android
+# button-clicker-android-kotlin
 Android application built using Kotlin
