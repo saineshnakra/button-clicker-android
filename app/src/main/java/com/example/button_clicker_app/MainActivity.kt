@@ -1,6 +1,7 @@
 package com.example.button_clicker_app
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -29,10 +30,16 @@ class MainActivity : ComponentActivity() {
         userInput = findViewById(R.id.editTextTextMultiLine)
         button = findViewById(R.id.button)
         textView = findViewById(R.id.textView)
-
+        textView?.movementMethod = ScrollingMovementMethod()
         button?.setOnClickListener {
             numTimeClicked += 1
-            textView?.append("\nYou tapped the button $numTimeClicked times")
+            textView?.append("You tapped the button $numTimeClicked time")
+            if(numTimeClicked!=1){
+                textView?.append("s\n")
+            }
+            else{
+                textView?.append("\n")
+            }
         }
     }
 }
