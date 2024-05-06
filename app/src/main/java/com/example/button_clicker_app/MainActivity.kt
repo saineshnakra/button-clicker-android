@@ -19,27 +19,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.button_clicker_app.ui.theme.ButtonclickerappTheme
 
 class MainActivity : ComponentActivity() {
-    private var userInput : EditText? = null
-    private var button : Button? = null
     private var textView : TextView? = null
-    private var numTimeClicked = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main);
-        userInput = findViewById(R.id.editTextTextMultiLine)
-        button = findViewById(R.id.button)
+        val userInput: EditText = findViewById(R.id.editTextTextMultiLine)
+        val button: Button = findViewById(R.id.button)
+        textView?.text = ""
+        userInput.text.clear()
         textView = findViewById(R.id.textView)
         textView?.movementMethod = ScrollingMovementMethod()
-        button?.setOnClickListener {
-            numTimeClicked += 1
-            textView?.append("You tapped the button $numTimeClicked time")
-            if(numTimeClicked!=1){
-                textView?.append("s\n")
-            }
-            else{
-                textView?.append("\n")
-            }
+        button.setOnClickListener {
+            textView?.append(userInput.text)
+            textView?.append("\n")
+            userInput.text.clear()
         }
     }
 }
