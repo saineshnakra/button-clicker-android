@@ -2,6 +2,7 @@ package com.example.button_clicker_app
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -20,7 +21,10 @@ import com.example.button_clicker_app.ui.theme.ButtonclickerappTheme
 
 class MainActivity : ComponentActivity() {
     private var textView : TextView? = null
+
+    private val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG,"onCreate:called")
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main);
@@ -31,9 +35,14 @@ class MainActivity : ComponentActivity() {
         textView = findViewById(R.id.textView)
         textView?.movementMethod = ScrollingMovementMethod()
         button.setOnClickListener {
+            Log.d(TAG,"onClick:called")
             textView?.append(userInput.text)
             textView?.append("\n")
             userInput.text.clear()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
